@@ -22,7 +22,7 @@ class SearchBar extends Component {
     super(props);
     //create a new object and assign it to this.state
     //the object we pass will record properties to the state itself. ie - search TERM.
-    //setting this.state to an empty object allows it to be accessed by this.setState everywhere else. 
+    //setting this.state to an empty object allows it to be accessed by this.setState everywhere else.
     this.state = { term: ''};
   }
   //same as React.Component, or const Component = React.Component
@@ -30,9 +30,16 @@ class SearchBar extends Component {
   render() {
     //all html elements have a change event listener
     //create a reference to our custom event handler
-    return <input onChange={event =>
-      //to change state, use this.setState
-       this.setState( { term: event.target.value })} />
+    return (
+
+      <div>
+      <input onChange={event =>
+        //to change state, use this.setState
+        this.setState( { term: event.target.value })} />
+        //whenever we change the value of the input, we set the state (this.setState) with the new value of the input, and it re-renders to this.state.term!
+        // Value of the input: {this.state.term}
+        </div>
+    );
   }
 
   //define event handler onChange, or handleChange is common practice. add the event argument
