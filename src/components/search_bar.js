@@ -33,11 +33,18 @@ class SearchBar extends Component {
     return (
 
       <div>
-      <input onChange={event =>
+      <input
+      //value starts at '' because that is what state is initialized as!
+      //value is a CONTROLLED COMPONENT. it just CAPTURES the sate as a value. it still needs to be passed that value from SOMEWHERE
+        value = { this.state.term }
+        onChange={event =>
         //to change state, use this.setState
+        //if we don't have this, we can't pass that state to the value! it's(the value tag) a CONTROLLED COMPONENT. this.setState is what tells the input to be rerendered with the new state.
         this.setState( { term: event.target.value })} />
         //whenever we change the value of the input, we set the state (this.setState) with the new value of the input, and it re-renders to this.state.term!
         // Value of the input: {this.state.term}
+
+        //a controlled field (it's a form element, like an input or something) whose value is set by the state.
         </div>
     );
   }
