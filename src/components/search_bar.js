@@ -23,7 +23,7 @@ class SearchBar extends Component {
     //create a new object and assign it to this.state
     //the object we pass will record properties to the state itself. ie - search TERM.
     //setting this.state to an empty object allows it to be accessed by this.setState everywhere else.
-    this.state = { term: ''};
+    this.state = { term: '' || 'this is the initialized starting state that can be changed through .setState and passed to the event.target.value!'};
   }
   //same as React.Component, or const Component = React.Component
   //syntax for defining a method on a class
@@ -41,11 +41,11 @@ class SearchBar extends Component {
         //to change state, use this.setState
         //if we don't have this, we can't pass that state to the value! it's(the value tag) a CONTROLLED COMPONENT. this.setState is what tells the input to be rerendered with the new state.
         this.setState( { term: event.target.value })} />
+        </div>
         //whenever we change the value of the input, we set the state (this.setState) with the new value of the input, and it re-renders to this.state.term!
         // Value of the input: {this.state.term}
 
         //a controlled field (it's a form element, like an input or something) whose value is set by the state.
-        </div>
     );
   }
 
