@@ -4,7 +4,7 @@ import React, { Component } from 'react';
 
 //index needs a reference to this SearchBar instance since everything is SILOED
 
-//functional component is a 'dumb component' that we can call and returns jsx
+//functional component is a 'dumb component' that we can call and returns jsx. it has no concept of state.
 // const SearchBar = () => {
 //   return <input /> //React.createElement
 // }
