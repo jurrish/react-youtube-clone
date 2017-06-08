@@ -31,12 +31,12 @@ class App extends Component {
     });
   }
   //jsx is a dialect of javascript which allows what looks like html to be babeled or transpiled by react.
+  //here we can pass props through from the parent app to the children components because of how class inheritence and constructor(props) => super(props) works. it's allowing access, or actually passing those props through to instances. the "props" is the state in this case.
   render() {
     return (
       <div>
         <SearchBar />
-        //here we can pass props through from the parent app to the children components because of how class inheritence and constructor(props) => super(props) works. it's allowing access, or actually passing those props through to instances. the "props" is the state in this case.
-        <VideoList videos={ this.state.videos } />
+        <VideoList videos= { this.state.videos } />
       </div>
     );
   }
