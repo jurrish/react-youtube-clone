@@ -5,6 +5,7 @@ import VideoListItem from './video_list_item';
 
 const VideoList = (props) => {
   //take the prop from App, pass it to videoListItem
+  //onVideoSelect is a property we want to pass to our child item. we get it from selectedVideo property of the initial .state of index.js parent class constructor.
   const videoItems = props.videos.map((video) => {
     return (
       <VideoListItem
