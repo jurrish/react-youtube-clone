@@ -4,8 +4,14 @@ import React from 'react';
 import VideoListItem from './video_list_item';
 
 const VideoList = (props) => {
+  //take the prop from App, pass it to videoListItem
   const videoItems = props.videos.map((video) => {
-    return <VideoListItem key={video.etag} video={video} />
+    return (
+      <VideoListItem
+      onVideoSelect = {props.onVideoSelect}
+      key={video.etag}
+      video={video} />
+    );
   });
   //we are inhereting props from our parent app (as a return value from the fetch that is called) so we can pass it through to this component
   //we could console.log(props)

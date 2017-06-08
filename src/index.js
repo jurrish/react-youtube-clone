@@ -5,12 +5,14 @@ import ReactDom from 'react-dom';
 import YTSearch from 'youtube-api-search';
 import SearchBar from './components/search_bar';
 import VideoList from './components/video_list';
+import VideoDetail from './components/video_detail';
 //api key alows us to make requests to youtube
 //TODO remember to put api key in/ load in from .env
 
 
+
 //in react, we want DOWNWARDS FLOW. that means, that the most parent component should do the fetching of data, so that our other components (search_bar, video_list, etc) have access to thta fetched data
-YTSearch({key: API_KEY, term: 'surfboards'}, function(data){
+YTSearch({key: API_KEY, term: 'monkeys'}, function(data){
   console.log(data);
 });
 
@@ -21,13 +23,19 @@ class App extends Component {
   constructor(props) {
     super(props);
 
-    this.state = { videos: [] };
+    this.state = {
+      videos: [],
+      selectedVideo: null
+    };
 
-    YTSearch({key: API_KEY, term: 'surfboards'}, (videos) => {
+    YTSearch({key: API_KEY, term: 'otters'}, (videos) => {
       //set state with data that comes back!
       //we can use es6 syntax because the data that comes back from the callback (videos) is the same as the key in the setState object!
       // this.setState({ videos: videos });
-      this.setState({ videos }); //this is actually resolved as this.setState({ videos: videos })
+      this.setState({
+        videos: videos,
+        selectedVideo: videos[0]
+        }); //this is actually resolved as this.setState({ videos: videos })
     });
   }
   //jsx is a dialect of javascript which allows what looks like html to be babeled or transpiled by react.
@@ -36,7 +44,11 @@ class App extends Component {
     return (
       <div>
         <SearchBar />
-        <VideoList videos= { this.state.videos } />
+        <VideoDetail video={ this.state.selectedVideo }/>
+        <VideoList
+          onVideoSelect={selectedVideo => this.setState({selectedVideo})
+          }
+          videos={ this.state.videos } />
       </div>
     );
   }
