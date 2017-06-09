@@ -2,6 +2,7 @@
 
 import React from 'react';
 
+
 //{video} is just like saying (props) with a property of video. ty es6 constant
 //passing multiple "props" to be utilized by the VideoListItem from the parent component (aka video_list)
 const VideoListItem = ({video, onVideoSelect}) => {

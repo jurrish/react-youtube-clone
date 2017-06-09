@@ -6,13 +6,14 @@ import YTSearch from 'youtube-api-search';
 import SearchBar from './components/search_bar';
 import VideoList from './components/video_list';
 import VideoDetail from './components/video_detail';
+
+
 //api key alows us to make requests to youtube
 //TODO remember to put api key in/ load in from .env
 
 
-
 //in react, we want DOWNWARDS FLOW. that means, that the most parent component should do the fetching of data, so that our other components (search_bar, video_list, etc) have access to thta fetched data
-YTSearch({key: API_KEY, term: 'monkeys'}, function(data){
+YTSearch({key: API_KEY, term: 'bears'}, function(data){
   console.log(data);
 });
 
@@ -22,13 +23,13 @@ class App extends Component {
 
   constructor(props) {
     super(props);
-
     this.state = {
       videos: [],
       selectedVideo: null
     };
 
-    YTSearch({key: API_KEY, term: 'otters'}, (videos) => {
+    YTSearch({key: API_KEY, term: 'bears'}, (videos) => {
+
       //set state with data that comes back!
       //we can use es6 syntax because the data that comes back from the callback (videos) is the same as the key in the setState object!
       // this.setState({ videos: videos });
