@@ -11,11 +11,13 @@ import VideoDetail from './components/video_detail';
 //api key alows us to make requests to youtube
 //TODO remember to put api key in/ load in from .env
 
+const API_KEY = '';
+
 
 //in react, we want DOWNWARDS FLOW. that means, that the most parent component should do the fetching of data, so that our other components (search_bar, video_list, etc) have access to thta fetched data
-YTSearch({key: API_KEY, term: 'bears'}, function(data){
-  console.log(data);
-});
+// YTSearch({key: API_KEY, term: 'bears'}, function(data){
+//   console.log(data);
+// });
 
 //1)TODO create a new component. this component should produce some html. aka we are using javacsript functions to return jsx. jsx can't be interpreted by the browser. babel transpiles it for us from the boilerplate. what's the purpose of jsx then? Becuase, that's what produces the html on the DOM. it gets turn into html which then gets placed to the document/DOM.
 
@@ -28,7 +30,11 @@ class App extends Component {
       selectedVideo: null
     };
 
-    YTSearch({key: API_KEY, term: 'bears'}, (videos) => {
+    this.videoSearch('bears');
+  }
+
+  videoSearch(term) {
+    YTSearch({key: API_KEY, term: term}, (videos) => {
 
       //set state with data that comes back!
       //we can use es6 syntax because the data that comes back from the callback (videos) is the same as the key in the setState object!
@@ -36,15 +42,16 @@ class App extends Component {
       this.setState({
         videos: videos,
         selectedVideo: videos[0]
-        }); //this is actually resolved as this.setState({ videos: videos })
+      }); //this is actually resolved as this.setState({ videos: videos })
     });
+
   }
   //jsx is a dialect of javascript which allows what looks like html to be babeled or transpiled by react.
   //here we can pass props through from the parent app to the children components because of how class inheritence and constructor(props) => super(props) works. it's allowing access, or actually passing those props through to instances. the "props" is the state in this case.
   render() {
     return (
       <div>
-        <SearchBar />
+        <SearchBar onSearchTermChange={term => this.videoSearch(term)} />
         <VideoDetail video={ this.state.selectedVideo }/>
         <VideoList
           onVideoSelect={selectedVideo => this.setState({selectedVideo})
