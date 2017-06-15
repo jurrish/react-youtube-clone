@@ -1,5 +1,6 @@
 //go find the library called react from our dependencies in our node_modules, and assign it to the variable React. the transpiler will run that file and make sure that index.js has access to those innards.
 //we still reactDom to render components to the DOM
+import _ from 'lodash';
 import React, { Component } from 'react';
 import ReactDom from 'react-dom';
 import YTSearch from 'youtube-api-search';
@@ -49,9 +50,12 @@ class App extends Component {
   //jsx is a dialect of javascript which allows what looks like html to be babeled or transpiled by react.
   //here we can pass props through from the parent app to the children components because of how class inheritence and constructor(props) => super(props) works. it's allowing access, or actually passing those props through to instances. the "props" is the state in this case.
   render() {
+    //debounce takes a function and passes a function that can only be called every 300 milliseconds
+    const videoSearch = _.debounce((term)  => { this.videoSearch(term) }, 300);
     return (
       <div>
-        <SearchBar onSearchTermChange={term => this.videoSearch(term)} />
+      //SearchBar uses onSearchTermChange property to kick off videoSearch every 300 milliseconds
+        <SearchBar onSearchTermChange={videoSearch} />
         <VideoDetail video={ this.state.selectedVideo }/>
         <VideoList
           onVideoSelect={selectedVideo => this.setState({selectedVideo})
